@@ -1,0 +1,10 @@
+AllSets.json
+conf/*.conf
+conf/*.json
+conf/hostname
+conf/private_key
+tor/*
+nw/*
+node_modules/*
+updates/*.zip
+

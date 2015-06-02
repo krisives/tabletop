@@ -1,0 +1,123 @@
+
+@font-face {
+	font-family: OpenSans;
+	font-style: normal;
+	font-weight: 400;
+	src: url(OpenSans-Regular.ttf)
+}
+
+html {
+	color: #fff;
+	font-family: OpenSans;
+	font-size: 15px;
+	padding: 0;
+	margin: 0;
+	cursor: default;
+	background: url(http://i.imgur.com/kJr0zPQ.jpg);
+	background-position: top center;
+}
+
+html:before {
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6667), rgba(0, 0, 0, 0.85));
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	content: " ";
+	z-index: -1;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+
+}
+
+p {
+
+}
+
+h1, h2, h3, h4, h5 {
+	margin: 0;
+	padding: 0;
+	font-family: OpenSans;
+	display: block;
+}
+
+.btn {
+	background: #3498db;
+	background-image: linear-gradient(to bottom, #3498db, #2980b9);
+	border-radius: 9px;
+	font-family: OpenSans;
+	color: #ffffff;
+
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+	display: block;
+
+	text-align: center;
+
+	vertical-align: middle;
+}
+
+.btn:hover {
+	background: #3cb0fd;
+	background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+	text-decoration: none;
+	cursor: pointer;
+}
+
+input[type=text] {
+	padding: 0;
+	margin: 0;
+	font-family: OpenSans;
+	outline: none;
+	border: 1px solid #fff;
+	background: #000;
+	color: #fff;
+	padding: 3px 4px;
+	border-radius: 5px;
+}
+
+code {
+
+}
+
+.panel {
+	width: 66%;
+	margin: 30px auto;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.667);
+	border-radius: 30px;
+}
+
+.panel h1 {
+	margin-bottom: 10px;
+	padding: 3px;
+}
+
+.panel-section {
+	padding: 6px;
+	margin-bottom: 10px;
+	border: 1px solid transparent;
+	border-radius: 7px;
+}
+
+.panel-section small {
+	color: #aaa;
+}
+
+.panel-section:hover {
+	border: 1px solid #666;
+}
+
+.panel-buttons {
+	text-align: right;
+	padding-top: 20px;
+}
+
+.panel-buttons .btn {
+	display: inline-block;
+	margin: 4px;
+}

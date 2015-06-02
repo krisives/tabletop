@@ -1,0 +1,22 @@
+
+#intro {
+	-webkit-user-select: none;
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	display: none;
+}
+
+#intro:target {
+	display: block;
+}
+
+#intro .btn {
+	font-size: 30px;
+	line-height: 30px;
+	margin: 7px 0;
+}
+
+#intro .btn:hover {
+	box-shadow: 0 0 16px #3cb0fd;
+}

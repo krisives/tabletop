@@ -1,0 +1,11 @@
+{
+	"main": "index.html",
+	"node-main": "index.js",
+	"name": "tabletop",
+	"description": "play card games",
+	"keywords": [ "card", "game" ],
+	"window": {
+		"title": "",
+		"toolbar": false
+	}
+}

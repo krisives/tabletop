@@ -1,0 +1,168 @@
+
+#decks {
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-user-select: none;
+}
+
+#decks:target {
+	display: block;
+}
+
+#decks-back {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	font-size: 20px;
+	line-height: 20px;
+	width: 80px;
+}
+
+#decks-top {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 50px;
+	background: linear-gradient(to bottom, #333, #111);
+	border-bottom: 1px solid #333;
+}
+
+#decks h1 {
+	position: absolute;
+	left: 10px;
+	top: 3px;
+	color: #ccc;
+	text-shadow: 0 -1px #000;
+}
+
+#decks-search {
+	position: absolute;
+	left: 110px;
+	top: 10px;
+	color: #222;
+	background: #fff;
+	border: 1px solid #333;
+	padding: 4px;
+	margin: 0;
+	width: 150px;
+	line-height: 20px;
+	font-size: 15px;
+	border-radius: 4px;
+}
+
+#decks-search-target {
+	position: absolute;
+	left: 275px;
+	top: 10px;
+	height: 30px;
+}
+
+#decks-list {
+	position: absolute;
+	right: 20px;
+	top: 80px;
+	bottom: 80px;
+	width: 200px;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.75);
+}
+
+#decks-dropdown {
+	position: absolute;
+	left: 8px;
+	right: 8px;
+	top: 8px;
+	width: 155px;
+	height: 24px;
+}
+
+#decks-new {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	height: 24px;
+	width: 24px;
+	background: #777;
+	color: #000;
+	text-align: center;
+	line-height: 24px;
+	font-size: 24px;
+	cursor: pointer;
+	border-radius: 12px;
+}
+
+#decks-name {
+	position: absolute;
+	top: 40px;
+	left: 8px;
+	width: 175px;
+}
+
+#decks-list-cards {
+	position: absolute;
+	left: 4px;
+	right: 4px;
+	bottom: 8px;
+	top: 80px;
+	border-top: 1px solid #fff;
+	padding-top: 3px;
+}
+
+#decks-list-cards .decks-list-card {
+	position: relative;
+	padding: 1px 3px;
+}
+
+#decks-list-cards .decks-list-card:hover {
+	background: #fff;
+	color: #000;
+	border-radius: 4px;
+}
+
+#decks-list-cards .decks-list-item-image {
+	position: absolute;
+	display: none;
+	left: -225px;
+	top: -110px;
+	overflow: hidden;
+	width: 200px;
+	height: 285px;
+}
+
+#decks-list-cards .decks-list-item-image img {
+	position: relative;
+	left: -11px;
+	top: -12px;
+}
+
+#decks-list-cards .decks-list-card:hover .decks-list-item-image {
+	display: block;
+}
+
+#decks-cards {
+	position: absolute;
+	left: 10px;
+	top: 65px;
+	right: 230px;
+	bottom: 20px;
+	overflow: auto;
+}
+
+#decks-cards > div {
+	position: relative;
+	float: left;
+	width: 200px;
+	height: 285px;
+	overflow: hidden;
+	margin: 6px;
+}
+
+#decks-cards > div > img {
+	position: absolute;
+	left: -11px;
+	top: -12px;
+}

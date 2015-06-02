@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="tabletop.css">
+
+	<script src="jquery-2.1.4.min.js"></script>
+
+	<script>
+	(function () {
+		var gui = require('nw.gui');
+
+		$(function () {
+			process.mainModule.exports.loadApp($, gui);
+		});
+	}());
+	</script>
+
+	<script src="ui/basic.js"></script>
+	<script src="ui/console.js"></script>
+	<script src="ui/decks.js"></script>
+	<script src="ui/intro.js"></script>
+	<script src="ui/options.js"></script>
+	<script src="ui/game.js"></script>
+</head>
+
+<body>
+
+<div id="intro">
+	<a class="btn" href="#decks">
+		Decks
+	</a>
+
+	<a class="btn" href="#host">
+		Create Game
+	</a>
+
+	<a class="btn" href="#join">
+		Join Game
+	</a>
+
+	<a class="btn" href="#options">
+		Options
+	</a>
+</div>
+
+<div id="decks">
+	<div id="decks-list">
+		<select id="decks-dropdown"></select>
+
+		<a id="decks-new">
+			&plus;
+		</a>
+
+		<input type="text" id="decks-name">
+
+		<div id="decks-list-cards">
+
+		</div>
+	</div>
+
+	<div id="decks-top">
+		<h1>Decks</h1>
+
+		<input id="decks-search" type="text">
+
+		<select id="decks-search-target">
+			<option value="cards">All Cards</option>
+			<option value="deck">Cards in Deck</option>
+			<option value="results">Current Results</option>
+		</select>
+	</div>
+
+	<div id="decks-cards">
+
+	</div>
+
+	<a id="decks-back" href="#intro" class="btn">
+		Back
+	</a>
+</div>
+
+<div id="options">
+	<div class="panel">
+	<h1>Options</h1>
+
+	<div class="panel-section">
+		<div>
+			Name:
+		</div>
+
+		<div>
+			<input type="text" id="options-name">
+		</div>
+
+		<div>
+		<small>
+			This name is shown when playing with other people.
+		</small>
+		</div>
+	</div>
+
+	<div class="panel-section">
+		<div>
+			Background:
+		</div>
+
+		<div>
+			<input type="text" id="options-bg">
+			<!-- http://i.imgur.com/N0N0tDK.jpg	 -->
+		</div>
+
+		<div>
+		<small>
+		This URL is used for your background image.
+		</small>
+		</div>
+	</div>
+
+	<div class="panel-buttons">
+		<a class="btn" id="options-reset">
+			Discard
+		</a>
+
+		<a class="btn" href="#intro">
+			Back
+		</a>
+
+		<a class="btn" id="options-accept">
+			Accept
+		</a>
+	</div>
+
+	</div>
+</div>
+
+<div id="join">
+	<div class="panel">
+		<h1>Join Game</h1>
+
+		<div class="panel-section">
+			<div>
+				Peer ID:
+			</div>
+
+			<div>
+				<input type="text" id="join-peerid">
+			</div>
+
+			<div>
+			<small>
+				You'll need to get the peer ID of someone to
+				join their games.
+			</small>
+			</div>
+		</div>
+
+		<div class="panel-buttons">
+			<a class="btn" href="#intro">
+				Back
+			</a>
+
+			<a class="btn" id="join-accept">
+				Accept
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="host">
+	<div class="panel">
+		<h1>Create Game</h1>
+
+		<div class="panel-section">
+			<div>
+				Peer ID: <code id="host-peerid"></code>
+			</div>
+
+			<div>
+			<small>
+				Copy this so that others can join your game. You
+				can get this from the console by running /peerid
+			</small>
+			</div>
+		</div>
+
+		<div class="panel-section">
+			<div>
+				Password:
+			</div>
+
+			<div>
+				<input type="text" id="host-password">
+			</div>
+
+			<div>
+			<small>
+				Optional password required when connecting. It won't be revealed
+				in plaintext or stored. You can change this later by using
+				the /gamepass command.
+			</small>
+			</div>
+		</div>
+
+		<div class="panel-buttons">
+			<a class="btn" href="#intro">
+				Back
+			</a>
+
+			<a class="btn" id="host-accept">
+				Accept
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="game">
+
+</div>
+
+<div id="console">
+	<div id="console-title">
+		Console
+	</div>
+
+	<div id="console-close">
+		&times;
+	</div>
+
+	<div id="console-log-box">
+		<div id="console-log">
+			<div>
+				This is the console. You can toggle it by pressing
+				the ~ key.
+			</div>
+		</div>
+	</div>
+
+	<div id="console-input-box">
+		<input type="text" id="console-input">
+	</div>
+
+	<div id="console-resizer">
+
+	</div>
+</div>
+
+
+</body>
+</html>
