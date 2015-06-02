@@ -43,14 +43,50 @@ $(function () {
 			return;
 		}
 
-		$('#decks-cards').empty();
+		$('#decks-results').empty();
 		app.db.search(keyword, addResult);
 	});
 
-	$('#decks-cards').mousedown(function (e) {
+	$('#decks-results').mousedown(function (e) {
 		e.preventDefault();
 
-		var node = $(e.target).parents('.decks-card');
+		var node = $(e.target).parents('.decks-result');
+
+		if (node.length <= 0) {
+			return;
+		}
+
+		var card = app.db.getCard(node.data('cardid'));
+
+		if (!card) {
+			return;
+		}
+
+		if (e.button === 0) {
+			app.modifyDeckCard(card, 1);
+		} else {
+			app.modifyDeckCard(card, -1);
+		}
+
+		var count = app.currentDeck.cards[card.multiverseid];
+		var quantityNode = node.find('.decks-result-quantity');
+
+		if (count > 0) {
+			if (quantityNode.length <= 0) {
+				quantityNode = $('<div class="decks-result-quantity"></div>');
+				node.append(quantityNode);
+			}
+
+			quantityNode.text(count);
+		} else {
+			node.find('.decks-result-quantity').detach();
+		}
+	});
+
+	$('#decks-list-cards').mousedown(function (e) {
+		e.preventDefault();
+
+		var node = $(e.target).parents('.decks-list-card');
 
 		if (node.length <= 0) {
 			return;
@@ -115,14 +151,21 @@ $(function () {
 	}
 
 	function addResult(card) {
-		var node = $('<div class="decks-card"></div>');
+		var node = $('<div class="decks-result"></div>');
 		var img = $('<img>');
+		var count = app.currentDeck.cards[card.multiverseid];
 
 		img.attr('src', cardURL(card.multiverseid));
 		node.data('cardid', card.multiverseid);
 		node.append(img);
 
-		$('#decks-cards').append(node);
+		if (count > 0) {
+			node.append($('<div class="decks-result-quantity"></div>')
+				.text(count)
+			);
+		}
+
+		$('#decks-results').append(node);
 	}
 });
 

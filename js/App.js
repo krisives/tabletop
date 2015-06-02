@@ -1,5 +1,5 @@
 
-var VERSION = "2.3.0";
+var VERSION = "2.4.0";
 
 // Modules
 var util = require('util');
@@ -388,6 +388,8 @@ function App($, gui) {
 			false,
 			true
 		);
+
+		window.alert("Finished udpating. Please restart the application.");
 	};
 
 	// Write a JSON configuration file
