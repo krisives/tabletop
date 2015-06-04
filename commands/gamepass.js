@@ -1,6 +1,6 @@
 
 function gamepass(app, args) {
-
+	
 }
 
 gamepass.summary = "Set the password for games you host";

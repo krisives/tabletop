@@ -1,5 +1,5 @@
 
-var VERSION = "2.4.0";
+var VERSION = "2.4.1";
 
 // Modules
 var util = require('util');
@@ -17,6 +17,7 @@ var Server = require('./Server.js');
 var Tor = require('./Tor.js');
 var Database = require('./Database.js');
 var DeckBuilder = require('./DeckBuilder.js');
+var Game = require('./Game.js');
 
 function App($, gui) {
 	var self = this;	// Reference because "this" changes via context
@@ -31,6 +32,7 @@ function App($, gui) {
 	var currentDeck;	// Deck the player has selected
 	var commands;		// User commands loaded from the 'commands/' dir
 	var settings;		// Simply settings.json loaded from conf dir
+	var game;
 
 	EventEmitter.call(self);
 
@@ -69,6 +71,8 @@ function App($, gui) {
 			self.currentDeck = currentDeck = decks.createDeck();
 		}
 
+		self.game = game = new Game(createGameID());
+
 		// Server for receiving messages
 		self.server = server = new Server(basePort);
 
@@ -83,6 +87,13 @@ function App($, gui) {
 		});
 
 		self.tor.on('ready', finishTor);
+	}
+
+	function createGameID() {
+		var a = ~~(Math.random() * 99);
+		var b = ~~(Math.random() * 99);
+		var c = ~~(Math.random() * 99);
+		return String(a) + String(b) + String(c);
 	}
 
 	// Entry point for the application
@@ -114,6 +125,8 @@ function App($, gui) {
 		log.print("Thanks for testing!");
 
 		self.checkUpdates();
+
+		game.load();
 	};
 
 	self.changeDeck = function (deck) {
@@ -274,24 +287,41 @@ function App($, gui) {
 
 	self.checkUpdates = function () {
 		$.getJSON("https://api.github.com/repos/krisives/tabletop/tags", function (data) {
-			console.log("[App] Update info", data);
-
-			data = data || [];
-
-			$.each(data, function (i, tag) {
-				if (self.compareVersionStrings(VERSION, tag.name) > 0) {
-					console.log("[App] A newer version is available");
-					console.log("[App]", tag.zipball_url);
-
-					if (window.confirm("Update to version " + tag.name + "?")) {
-						self.performUpdate(tag);
-					}
-
-					return false;
-				}
-			});
+			readUpdateList(data);
 		});
 	};
+
+	function readUpdateList(data) {
+		console.log("[App] Update info", data);
+
+		data = data || [];
+
+		if (!data || data.length <= 0) {
+			return;
+		}
+
+		data.sort(function (a, b) {
+			return self.compareVersionStrings(a.name, b.name);
+		});
+
+		var mostRecent = data[0];
+
+		if (!mostRecent) {
+			return;
+		}
+
+		console.log("[App] Most recent version is", mostRecent);
+
+		if (self.compareVersionStrings(VERSION, mostRecent.name) <= 0) {
+			return;
+		}
+
+		if (!window.confirm("Update to version " + tag.name + "?")) {
+			return;
+		}
+
+		self.performUpdate(mostRecent);
+	}
 
 	self.downloadFile = function (localPath, url, f) {
 		var file = fs.createWriteStream(localPath);

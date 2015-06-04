@@ -1,6 +1,4 @@
 
-function move(game) {
-	
-}
-
-module.exports = move;
+	handlers.move = createThingHandler(function (thing, e) {
+		thing.move(e.x, e.y);
+	});

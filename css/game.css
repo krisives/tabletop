@@ -11,3 +11,39 @@
 #game:target {
 	display: block;
 }
+
+#game #game-menu {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	background: rgba(0, 0, 0, 0.85);
+	display: none;
+}
+
+#game.game-show-menu #game-menu {
+	display: block;
+}
+
+#game #game-menu {
+
+}
+
+#game #game-id {
+	right: 5px;
+	top: 5px;
+	color: #fff;
+	text-shadow: 0 1px #000;
+	font-size: 15px;
+}
+
+#game .game-card {
+	position: absolute;
+}
+
+#game .game-card .game-gfx {
+
+}
+
+#game .game-card .game-gfx img {
+
+}

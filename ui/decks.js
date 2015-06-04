@@ -30,22 +30,84 @@ $(function () {
 		refresh();
 	});
 
+	$('#decks-search-target').change(function (e) {
+		search();
+	});
+
 	$('#decks-search').keypress(function (e) {
 		if (e.keyCode !== 13) {
 			return;
 		}
 
 		e.preventDefault();
+		search();
+	});
 
+	function search() {
 		var keyword = $('#decks-search').val().trim();
+		var mode = $('#decks-search-target').val();
+
+		switch (mode) {
+		case 'results':
+			searchResults(keyword);
+			break;
+		case 'deck':
+			searchDeck(keyword);
+			break;
+		default:
+			searchDatabase(keyword);
+			break;
+		}
+	}
+
+	function searchDatabase(keyword) {
+		$('#decks-results').empty();
 
 		if (keyword.length <= 0) {
 			return;
 		}
 
-		$('#decks-results').empty();
 		app.db.search(keyword, addResult);
-	});
+	}
+
+	function searchDeck(keyword) {
+		var filter = new RegExp(keyword, 'i');
+		$('#decks-results').empty();
+
+		Object.keys(app.currentDeck.cards).forEach(function (id) {
+			var card = app.db.getCard(id);
+
+			if (!card) {
+				return;
+			}
+
+			if (filter.test(card.name)) {
+				addResult(card);
+			}
+		});
+	}
+
+	function searchResults(keyword) {
+		if (keyword.length <= 0) {
+			return;
+		}
+
+		var filter = new RegExp(keyword, 'i');
+
+		$('#decks-results .decks-result').each(function (i, elem) {
+			var node = $(elem);
+			var id = node.data('cardid');
+			var card = app.db.getCard(id);
+
+			if (!card) {
+				return;
+			}
+
+			if (!filter.test(card.name)) {
+				node.detach();
+			}
+		});
+	}
 
 	$('#decks-results').mousedown(function (e) {
 		e.preventDefault();
